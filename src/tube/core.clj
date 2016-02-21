@@ -19,12 +19,17 @@
   (route/files "/" {:root "front/web"})
   (compojure.route/not-found "404 not found"))
 
-(def app
-  (handler/site ring-app))
+(defn app-routes [state]
+  (compojure.core/routes
+    (GET "/api/hello" request (api/hello state))))
+
+(defn app [state]
+  (-> state (app-routes)))
 
 (defn start-server [port]
   (println (str "Starting Tube on port " port))
-  (run-server (site #'app) {:port port}))
+  (let [state (atom {:config {}})]
+    (run-server (site (handler/site (app state))) {:port port})))
 
 (defn -main
   "Starts the server"

@@ -1,0 +1,30 @@
+{
+    "title": "Foo shop",
+    "updaters": {
+        "file-updater": {
+            "dir": "/tmp/fooshop"
+        }
+    }
+    "parameters": [
+        {
+            "id": "orders",
+            "title": "Orders",
+            "type": "simple"
+        },
+        {
+            "id": "orders-all-time",
+            "title": "Orders",
+            "type": "simple"
+        },
+        {
+            "id": "orders-today",
+            "title": "Orders today",
+            "type": "simple"
+        },
+        {
+            "id": "order-automation-percent",
+            "title": "Automated handling",
+            "type": "simple"
+        }
+    ]
+}

@@ -7,5 +7,5 @@
 (defn- wrap-resp [response-data]
   (content-type (response (json/write-str response-data)) "application/json"))
 
-(defn hello []
-  (wrap-resp {:message "hello"}))
+(defn hello [state]
+  (wrap-resp {:message (str "hello" @state)}))

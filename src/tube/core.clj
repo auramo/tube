@@ -2,11 +2,13 @@
   (:require [compojure.core :refer :all]
             [compojure.handler :as handler]
             [compojure.route :as route]
-            [tube.restapi :as api])
+            [tube.restapi :as api]
+            [tube.options :as opts])
   (:use [compojure.route :only [files not-found]]
         [compojure.handler :only [site]]
         [compojure.core :only [defroutes GET POST DELETE ANY context]]
-        org.httpkit.server)
+        org.httpkit.server
+        clojopts.core)
   (:gen-class))
 
 (defroutes ring-app
@@ -26,12 +28,14 @@
 (defn app [state]
   (-> state (app-routes)))
 
-(defn start-server [port]
-  (println (str "Starting Tube on port " port))
-  (let [state (atom {:config {}})]
-    (run-server (site (handler/site (app state))) {:port port})))
+(defn start-server []
+  (let [state (atom {:config {}})
+        opts (opts/get-options)]
+    (println opts)
+    (println (str "Starting Tube on port " (:server-port opts)))
+    (run-server (site (handler/site (app state))) {:port (:server-port opts)})))
 
 (defn -main
   "Starts the server"
-  [port]
-  (start-server (Integer. port)))
+  [& args]
+  (start-server))

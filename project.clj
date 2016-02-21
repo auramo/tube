@@ -7,7 +7,8 @@
                  [http-kit "2.1.18"]
                  [javax.servlet/servlet-api "2.5"]
                  [compojure "1.4.0"]
-                 [org.clojure/data.json "0.2.6"]]
+                 [org.clojure/data.json "0.2.6"]
+                 [clojopts "0.3.5"]]
   :uberjar-name "tube.jar"
   :main ^:skip-aot tube.core
   :target-path "target/%s"

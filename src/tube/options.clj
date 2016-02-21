@@ -1,5 +1,4 @@
 (ns tube.options
-  (:require [clojure.data.json :as json])
   (:use clojopts.core))
 
 (defn cmd-line-options []

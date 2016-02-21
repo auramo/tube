@@ -3,7 +3,8 @@
             [compojure.handler :as handler]
             [compojure.route :as route]
             [tube.restapi :as api]
-            [tube.options :as opts])
+            [tube.options :as opts]
+            [tube.config :as config])
   (:use [compojure.route :only [files not-found]]
         [compojure.handler :only [site]]
         [compojure.core :only [defroutes GET POST DELETE ANY context]]
@@ -31,7 +32,6 @@
 (defn start-server []
   (let [state (atom {:config {}})
         opts (opts/get-options)]
-    (println opts)
     (println (str "Starting Tube on port " (:server-port opts)))
     (run-server (site (handler/site (app state))) {:port (:server-port opts)})))
 

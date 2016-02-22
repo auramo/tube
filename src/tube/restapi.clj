@@ -7,6 +7,9 @@
 (defn- wrap-resp [response-data]
   (content-type (response (json/write-str response-data)) "application/json"))
 
+(defn radiator-state [state]
+  (wrap-resp @state))
+
 (defn parameter-update [state update]
   (println "Got data:")
   (println update)

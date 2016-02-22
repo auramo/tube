@@ -14,6 +14,9 @@
 
 (defn app-routes [state]
   (compojure.core/routes
+   (GET "/api/radiator-state"
+        request
+        (api/radiator-state state))
    (POST "/api/parameter-update"
          request
          (api/parameter-update state

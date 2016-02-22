@@ -4,28 +4,20 @@
             [compojure.route :as route]
             [tube.restapi :as api]
             [tube.options :as opts]
-            [tube.config :as config]
-            [tube.updaters :as updaters])
+            [tube.config :as config])
   (:use [compojure.route :only [files not-found]]
         [compojure.handler :only [site]]
-        [compojure.core :only [defroutes GET POST DELETE ANY context]]
+        [compojure.core :only [defroutes POST context]]
         org.httpkit.server
         clojopts.core)
   (:gen-class))
 
-(defroutes ring-app
-  (GET "/" request "OK")
-
-  ;; API methods
-  (GET "/api/hello" request (api/hello))
-
-  ;;  (files "/")
-  (route/files "/" {:root "front/web"})
-  (compojure.route/not-found "404 not found"))
-
 (defn app-routes [state]
   (compojure.core/routes
-    (GET "/api/hello" request (api/hello state))))
+   (POST "/api/parameter-update"
+         request
+         (api/parameter-update state
+                               (slurp (request :body))))))
 
 (defn app [state]
   (-> state (app-routes)))
@@ -39,7 +31,6 @@
         conf (config/read-config (:config-file opts))
         state (create-initial-state conf)]
     (println (str "Starting Tube on port " (:server-port opts)))
-    (updaters/start (:updaters conf) state)
     (run-server (site (handler/site (app state))) {:port (:server-port opts)})))
 
 (defn -main

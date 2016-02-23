@@ -1,17 +1,12 @@
-(ns tube
-  (:require [yolk.bacon :as bacon]))
+(ns tube.core
+  (:require [reagent.core :as reagent]))
 
 (enable-console-print!)
 
+(defn app [state]
+  [:div "tube"])
+
 (defn init []
-  (println "yeah"))
-
-(def input-action (bacon/bus))
-
-(defn input [evt]
-  (println "plain input" (.-value (.-target evt)))
-  (bacon/push input-action (.-value (.-target evt))))
+  (reagent/render [app {:x "y"}] (.-body js/document)))
 
 (init)
-
-(bacon/on-value input-action #(println "bus got " %1))

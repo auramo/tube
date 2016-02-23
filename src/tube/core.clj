@@ -20,7 +20,8 @@
    (POST "/api/parameter-update"
          request
          (api/parameter-update state
-                               (slurp (request :body))))))
+                               (slurp (request :body))))
+   (route/files "/" {:root "front/web"})))
 
 (defn app [state]
   (-> state (app-routes)))

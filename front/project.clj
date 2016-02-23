@@ -3,7 +3,7 @@
   :plugins [[lein-cljsbuild "1.1.2"]]
   :dependencies [[org.clojure/clojurescript "1.7.228"]
                  [org.clojure/clojure "1.7.0"]
-                 [yolk "0.9.0"]]
+                 [reagent "0.6.0-alpha"]]
   :cljsbuild {
     :builds [{
         ; The path to the top-level ClojureScript source directory:

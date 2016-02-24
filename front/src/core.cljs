@@ -5,7 +5,7 @@
 (enable-console-print!)
 
 (defn app-fn [state]
-  [:div "tube"])
+  [:div "Tube"])
 
 (defn fetch-state [state]
   (GET "/api/radiator-state" {:handler #(println "response" %)
@@ -15,7 +15,6 @@
 
 (defn init []
   (let [state (atom {:x "y"})]
-    (reagent/render [(app-m state)] (.-body js/document))
-    ))
+    (reagent/render [(app-m state)] (.getElementById js/document "content"))))
 
 (init)

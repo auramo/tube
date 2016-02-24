@@ -6,13 +6,19 @@
                  [cljs-ajax "0.5.3"]
                  [reagent "0.6.0-alpha"]]
   :cljsbuild {
-    :builds [{
-        ; The path to the top-level ClojureScript source directory:
-        :source-paths ["src"]
-        ; The standard ClojureScript compiler options:
-        ; (See the ClojureScript compiler documentation for details.)
-        :compiler {
-                   :output-to "web/js/main.js"  ; default: target/cljsbuild-main.js
-                   :output-dir "web/js"
-                   :source-map "web/js/main.js.map"
-                   :optimizations :whitespace }}]})
+              :builds {
+                       :dev
+                       {:source-paths ["src"]
+                        :compiler {:output-to "web/js/main.js"
+                                   ;;:output-dir "web/js"
+                                   :main tube.core
+                                   :hashbang false
+                                   :asset-path "js"
+                                   :source-map true
+                                   :optimizations :none }}
+                       :prod
+                       {:source-paths ["src"]
+                        :compiler {:output-to "web/js/main.js"  ; default: target/cljsbuild-main.js
+                                   :output-dir "web/js"
+                                   :source-map "web/js/main.js.map"
+                                   :optimizations :whitespace }}}})

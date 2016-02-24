@@ -10,10 +10,10 @@
                        :dev
                        {:source-paths ["src"]
                         :compiler {:output-to "web/js/main.js"
-                                   ;;:output-dir "web/js"
+                                   :output-dir "web/js/out"
                                    :main tube.core
                                    :hashbang false
-                                   :asset-path "js"
+                                   :asset-path "js/out"
                                    :source-map true
                                    :optimizations :none }}
                        :prod

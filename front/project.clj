@@ -4,7 +4,8 @@
   :dependencies [[org.clojure/clojurescript "1.7.228"]
                  [org.clojure/clojure "1.7.0"]
                  [cljs-ajax "0.5.3"]
-                 [reagent "0.6.0-alpha"]]
+                 [reagent "0.6.0-alpha"]
+                 [com.andrewmcveigh/cljs-time "0.4.0"]]
   :cljsbuild {
               :builds {
                        :dev

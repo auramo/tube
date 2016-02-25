@@ -1,7 +1,13 @@
-(ns tube.radiator-display)
+(ns tube.radiator-display
+  (:require [goog.i18n.DateTimeFormat :as dtf]
+            [cljs-time.coerce :as time-coerce]
+            [cljs-time.format :as time-format]))
+
+(def tstamp-formatter (time-format/formatter "dd.MM.yyyy hh:mm:ss"))
 
 (defn millis->datestr [millis]
-  (.toString (js/Date. millis)))
+  (println (time-coerce/from-long millis))
+  (time-format/unparse tstamp-formatter (time-coerce/from-long millis)))
 
 (defn simple-parameter-contents [parameter]
   (let [value (:value parameter)]

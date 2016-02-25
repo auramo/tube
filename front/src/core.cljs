@@ -10,7 +10,7 @@
   (reset! state (clojure.walk/keywordize-keys response)))
 
 (defn fetch-state [state]
-  (GET "/api/radiator-state" {:handler #(handle-response state %) ;;#(handle-response state %)
+  (GET "/api/radiator-state" {:handler #(handle-response state %)
                                 :error-handler #(println "error" %)}))
 
 (defn app-fn [state]

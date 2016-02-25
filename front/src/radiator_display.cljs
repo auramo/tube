@@ -3,11 +3,14 @@
             [cljs-time.coerce :as time-coerce]
             [cljs-time.format :as time-format]))
 
-(def tstamp-formatter (time-format/formatter "dd.MM.yyyy hh:mm:ss"))
+(def tstamp-formatter (time-format/formatter "dd.MM.yyyy HH:mm:ss"))
+
+(defn tune-timezone [millis]
+  (- millis (* 1000 (* 60 (.getTimezoneOffset (js/Date.))))))
 
 (defn millis->datestr [millis]
   (println (time-coerce/from-long millis))
-  (time-format/unparse tstamp-formatter (time-coerce/from-long millis)))
+  (time-format/unparse tstamp-formatter (time-coerce/from-long (tune-timezone millis))))
 
 (defn simple-parameter-contents [parameter]
   (let [value (:value parameter)]

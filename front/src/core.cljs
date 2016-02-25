@@ -6,11 +6,8 @@
 (enable-console-print!)
 
 (defn handle-response [state response]
-  (println "state: " @state)
   (println "response: " response)
-  ;;  (reset! state (js->clj response :keywordize-keys true))
-  (reset! state (clojure.walk/keywordize-keys response))
-  (println "state after reset: " @state))
+  (reset! state (clojure.walk/keywordize-keys response)))
 
 (defn fetch-state [state]
   (GET "/api/radiator-state" {:handler #(handle-response state %) ;;#(handle-response state %)

@@ -5,7 +5,6 @@
 
 (defn simple-parameter-contents [parameter]
   (let [value (:value parameter)]
-    (println "value " value)
     (if value
       [[:div.warning (str "Updated: " (millis->datestr (:updated parameter)))]
        [:div.parameter (:value parameter)]
